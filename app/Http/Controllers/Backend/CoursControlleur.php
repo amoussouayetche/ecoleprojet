@@ -4,31 +4,28 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Classe;
-use App\Models\ResponsableEcole;
+use App\Models\Cours;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
-class ClassesControlleur extends Controller
+class CoursControlleur extends Controller
 {
     //
     public function index(){
-        $responsables=ResponsableEcole::join('users','users.id','=','responsable_ecoles.responsable_users_id')
-        ->select('users.name as username','responsable_ecoles.id as responsableid')
+        $classes=Classe::all();
+        $cours=Cours::join('classes','classes.id','=','cours.cours_classe_id')
+        ->select('cours.id as coursid','classes.nomClasse','cours.nom_cours')
         ->get();
-        $classes=Classe::join('responsable_ecoles','responsable_ecoles.id','=','classes.classe_responsable_id')
-        ->join('users','users.id','=','responsable_ecoles.responsable_users_id')
-        ->select('classes.id as classeid','classes.nomClasse','users.name','users.telephone')
-        ->get();
-        return view("layouts.backend.admin.classe.add",[
+        return view("layouts.backend.admin.cours.add",[
+            'cours'=>$cours,
             'classes'=>$classes,
-            'responsables'=>$responsables,
         ]);
     }
     public function store(Request $request){
         $rules = [
-            'nomclasse' => ['required'],
-            'responsable' => ['required']
+            'nomcours' => ['required'],
+            'classe' => ['required']
         ];
      
         $messages = [
@@ -45,12 +42,12 @@ class ClassesControlleur extends Controller
      
         $data = $request->all();
      
-        $classe = new Classe();
-        $classe->nomClasse=$data['nomclasse'];
-        $classe->classe_responsable_id=$data['responsable'];
-        $classe_save = $classe->save();
+        $cours = new Cours();
+        $cours->nom_cours=$data['nomcours'];
+        $cours->cours_classe_id=$data['classe'];
+        $cours_save = $cours->save();
      
-        if(!$classe_save ){
+        if(!$cours_save ){
             return redirect()->back()->with('fail', 'Les données n\'ont pas été enregistrées avec succès');
      
         }

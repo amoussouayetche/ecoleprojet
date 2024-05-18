@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Eleve <span style="font-size: 12px;color:#28a745">/ create</span> </h1>
+    <h1 class="h3 mb-0 text-gray-800">Ecole <span style="font-size: 12px;color:#28a745">/ create</span> </h1>
     {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
     class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
 </div>
 <div class="row">
-    <div class="col-xl-5">
+    <div class="col-xl-12">
         @if (Session::get('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>Felicitation!</strong> {{ Session::get('success') }}
@@ -36,45 +36,170 @@
                 </button>
             </div>
         @endif
-        <form class="g-3 needs-validation" action="" method="POST"
+        <form class="g-3 needs-validation" action="{{route('store_ecole_admin')}}" method="POST"
             enctype="multipart/form-data">
             @csrf
             <div class="row mb-2">
-                <div class="col-xl-6">
-                    <label for="validationCustom01" class="form-label">Titre</label>
-                    <input type="text" class="form-control" id="validationCustom02" name="titre"
-                        placeholder="Titre de l'actualité" required>
+                <div class="col-xl-3">
+                    <label for="validationCustom01" class="form-label">Nom eleve</label>
+                    <input type="text" class="form-control" id="validationCustom02" name="nom"
+                        placeholder="Nom eleve" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
                 </div>
-                
-            </div>
-            <div class="row mb-2">
-                <div class="col-md-12">
-                    <div class="mb-3">
-                        <label for="formFile" class="form-label">Image Phare</label>
-                        <input class="form-control" type="file" name="image" id="formFile" required>
+                <div class="col-xl-3">
+                    <label for="validationCustom01" class="form-label">Prenom eleve</label>
+                    <input type="text" class="form-control" id="validationCustom02" name="prenom"
+                        placeholder="Prenom eleve" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="col-xl-3">
+                    <label for="validationCustom01" class="form-label">Telephone eleve</label>
+                    <input type="text" class="form-control" id="validationCustom02" name="tel"
+                        placeholder="Telephone eleve" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="col-xl-3">
+                    <label for="validationCustom01" class="form-label">Sexe eleve</label>
+                    <select  class="form-control" id="validationCustom02" name="sexe" id="sexe" required>
+                        <option value="" selected disabled>Selectionné</option>
+                        <option value="M">Masculin</option>
+                        <option value="F">Feminin</option>
+                    </select>
+                    <div class="valid-feedback">
+                        Looks good!
                     </div>
                 </div>
             </div>
             <div class="row mb-2">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Contenu</label>
-                        <textarea class="form-control" id="summernote" name="description" rows="3" required></textarea>
+                <div class="col-xl-3">
+                    <label for="validationCustom01" class="form-label">Adresse eleve</label>
+                    <input type="text" class="form-control" id="validationCustom02" name="adresse"
+                        placeholder="Adresse eleve" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="col-xl-3">
+                    <label for="validationCustom01" class="form-label">Email eleve</label>
+                    <input type="text" class="form-control" id="validationCustom02" name="email"
+                        placeholder="Email eleve" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="col-xl-3">
+                    <label for="validationCustom01" class="form-label">Date Naissance eleve</label>
+                    <input type="date" class="form-control" id="validationCustom02" name="date"
+                        placeholder="Date Naissance eleve" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="col-xl-3">
+                    <label for="validationCustom01" class="form-label">classe</label>
+                    <select  class="form-control" id="validationCustom02" name="classe" id="classe" required>
+                        <option value="" selected disabled>Selectionné</option>
+                        @foreach ($classes as $classe)                        
+                        <option value="{{$classe->id}}">{{$classe->nomClasse}}</option>
+                        @endforeach
+                    </select>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-xl-3">
+                    <label for="validationCustom01" class="form-label">Nom parent</label>
+                    <input type="text" class="form-control" id="validationCustom02" name="nomparent"
+                        placeholder="Nom parent" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="col-xl-3">
+                    <label for="validationCustom01" class="form-label">Prenom parent</label>
+                    <input type="text" class="form-control" id="validationCustom02" name="prenomparent"
+                        placeholder="Prenom parent" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="col-xl-3">
+                    <label for="validationCustom01" class="form-label">Telephone parent</label>
+                    <input type="text" class="form-control" id="validationCustom02" name="telparent"
+                        placeholder="Telephone parent" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="col-xl-3">
+                    <label for="validationCustom01" class="form-label">Sexe parent</label>
+                    <select  class="form-control" id="validationCustom02" name="sexeparent" id="sexeparent" required>
+                        <option value="" selected disabled>Selectionné</option>
+                        <option value="M">Masculin</option>
+                        <option value="F">Feminin</option>
+                    </select>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-xl-3">
+                    <label for="validationCustom01" class="form-label">Adresse parent</label>
+                    <input type="text" class="form-control" id="validationCustom02" name="adresseparent"
+                        placeholder="Adresse parent" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="col-xl-3">
+                    <label for="validationCustom01" class="form-label">Email parent</label>
+                    <input type="text" class="form-control" id="validationCustom02" name="emailparent"
+                        placeholder="Email parent" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="col-xl-3">
+                    <label for="validationCustom01" class="form-label">Date Naissance parent</label>
+                    <input type="date" class="form-control" id="validationCustom02" name="dateparent"
+                        placeholder="Date Naissance parent" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="col-xl-3">
+                    <label for="validationCustom01" class="form-label">Anne Scolaire</label>
+                    <select  class="form-control" id="validationCustom02" name="annee" id="annee" required>
+                        <option value="" selected disabled>Selectionné</option>
+                        @foreach ($anneescolaire as $anneescolaire)                        
+                        <option value="{{$anneescolaire->id}}">{{$anneescolaire->annee_scollaire}}</option>
+                        @endforeach
+                    </select>
+                    <div class="valid-feedback">
+                        Looks good!
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12" style="text-align:end">
                     <button class="btn text-white" style="width: 100%;background:rgb(21, 199, 125)"
-                        type="submit">Enregistrer l'article</button>
+                        type="submit">Enregistrer l'eleve</button>
                 </div>
             </div>
         </form>
     </div>
-    <div class="col-xl-7">
+</div>
+<div class="row">
+    <div class="col-xl-12">
         @if (Session::get('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>Felicitation!</strong> {{ Session::get('success') }}
@@ -114,41 +239,32 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Titre</th>
-                                <th>Image</th>
-                                <th>Contenu</th>
-                                <th>Publié le</th>
+                                <th>Nom Ecole</th>
+                                <th>Adresse Ecole</th>
+                                <th>Numero Ecole</th>
+                                <th>Directeur Ecole</th>
                                 <th>Options</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>#</th>
-                                <th>Titre</th>
-                                <th>Image</th>
-                                <th>Contenu</th>
-                                <th>Publié le</th>
+                                <th>Nom Ecole</th>
+                                <th>Adresse Ecole</th>
+                                <th>Numero Ecole</th>
+                                <th>Directeur Ecole</th>
                                 <th>Options</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            {{-- @foreach ($actualites as $actualite)
+                            @foreach ($ecoles as $ecole)
                                 <tr>
-                                    <th scope="row">{{ $actualite->id }}</th>
-                                    <td>{{ $actualite->titre }}</td>
-                                    <td>
-                                        <img class="img-profile rounded-circle"src="{{ asset('storage/' . $actualite->image) }}"
-                                            style="width:30px;height:30px">
-                                    </td>
-                                    <td>{{ substr(strip_tags($actualite->description), 0, 10) }}...</td>
-                                    <td>
-                                        @if ($actualite->publie == 1)
-                                            {{ $actualite->updated_at }}
-                                        @else
-                                            Non publié
-                                        @endif
-
-                                    </td>
+                                    <th scope="row">{{ $ecole->id }}</th>
+                                    <td>{{ $ecole->nom_ecole }}</td>
+                                    <td>{{ $ecole->adresse_ecole }}</td>
+                                    <td>{{ $ecole->tel_ecole }}</td>
+                                    <td>{{ $ecole->name }}</td>
+                                    
                                     <td>
                                         <div class="dropdown">
                                             <button class="btn btn-success dropdown-toggle" type="button"
@@ -156,29 +272,29 @@
                                                 Action
                                             </button>
                                             <div class="dropdown-menu">
-                                                <button class="dropdown-item actualite-delete"
-                                                    data-id="{{ $actualite->id }}">
+                                                <button class="dropdown-item ecole-delete"
+                                                    data-id="{{ $ecole->id }}">
                                                     Supprimer
                                                     <div class="btn btn-danger">
                                                         <i class="fas fa-trash"></i>
                                                     </div>
                                                 </button>
-                                                <a class="dropdown-item" href="{{route('actualite_edit_admin',['slug'=>$actualite->slug])}}">Modifier
+                                                <a class="dropdown-item" href="">Modifier
                                                     <button class="btn btn-primary">
                                                         <i class="fas fa-edit"></i>
                                                     </button>
                                                 </a>
-                                                @if ($actualite->publie == 0)
-                                                    <button class="dropdown-item actualite-publie"
-                                                        data-id="{{ $actualite->id }}">
+                                                @if ($ecole->publie == 0)
+                                                    <button class="dropdown-item ecole-publie"
+                                                        data-id="{{ $ecole->id }}">
                                                         Publier
                                                         <div class="btn btn-success">
                                                             <i class="fas fa-check"></i>
                                                         </div>
                                                     </button>
                                                 @else
-                                                    <button class="dropdown-item actualite-retirer"
-                                                        data-id="{{ $actualite->id }}">
+                                                    <button class="dropdown-item ecole-retirer"
+                                                        data-id="{{ $ecole->id }}">
                                                         Retirer
                                                         <div class="btn btn-danger">
                                                             <i class="fas fa-check"></i>
@@ -189,12 +305,13 @@
                                         </div>
                                     </td>
                                 </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-    </div></div>
+    </div>
+</div>
     
 @endsection

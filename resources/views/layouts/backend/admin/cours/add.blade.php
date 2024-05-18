@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Classe <span style="font-size: 12px;color:#28a745">/ create</span> </h1>
+    <h1 class="h3 mb-0 text-gray-800">Cours <span style="font-size: 12px;color:#28a745">/ create</span> </h1>
     {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
     class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
 </div>
@@ -36,14 +36,14 @@
                 </button>
             </div>
         @endif
-        <form class="g-3 needs-validation" action="{{route('store_classe_admin')}}" method="POST"
+        <form class="g-3 needs-validation" action="{{route('store_cours_admin')}}" method="POST"
             enctype="multipart/form-data">
             @csrf
             <div class="row mb-2">
                 <div class="col-xl-12">
-                    <label for="validationCustom01" class="form-label">Nom Classe</label>
-                    <input type="text" class="form-control" id="validationCustom02" name="nomclasse"
-                        placeholder="Nom classe" required>
+                    <label for="validationCustom01" class="form-label">Nom Cours</label>
+                    <input type="text" class="form-control" id="validationCustom02" name="nomcours"
+                        placeholder="Nom cours" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -51,11 +51,11 @@
             </div>
             <div class="row mb-2">
                 <div class="col-xl-12">
-                    <label for="validationCustom01" class="form-label">Responsable classe</label>
-                    <select  class="form-control" id="validationCustom02" name="responsable" id="responsable" required>
+                    <label for="validationCustom01" class="form-label">classe</label>
+                    <select  class="form-control" id="validationCustom02" name="classe" id="classe" required>
                         <option value="" selected disabled>Selectionné</option>
-                        @foreach ($responsables as $responsable)                        
-                        <option value="{{$responsable->responsableid}}">{{$responsable->username}}</option>
+                        @foreach ($classes as $classe)                        
+                        <option value="{{$classe->id}}">{{$classe->nomClasse}}</option>
                         @endforeach
                     </select>
                     <div class="valid-feedback">
@@ -66,7 +66,7 @@
             <div class="row">
                 <div class="col-md-12" style="text-align:end">
                     <button class="btn text-white" style="width: 100%;background:rgb(21, 199, 125)"
-                        type="submit">Enregistrer la classe</button>
+                        type="submit">Enregistrer le cours</button>
                 </div>
             </div>
         </form>
@@ -103,7 +103,7 @@
 
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Classes</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Cours</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -111,29 +111,25 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Cours</th>
                                 <th>Classe</th>
-                                <th>Responsable classe</th>
-                                <th>Responsable telephone</th>
                                 <th>Options</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>#</th>
-                                <th>Responsable classe</th>
-                                <th>Responsable telephone</th>
+                                <th>Cours</th>
                                 <th>Classe</th>
                                 <th>Options</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach ($classes as $classe)
+                            @foreach ($cours as $cours)
                                 <tr>
-                                    <th scope="row">{{ $classe->classeid }}</th>
-                                    <td>{{ $classe->nomClasse }}</td>
-                                    <td>{{ $classe->name }}</td>
-                                    <td>{{ $classe->telephone }}</td>
-
+                                    <th scope="row">{{ $cours->coursid }}</th>
+                                    <td>{{ $cours->nom_cours }}</td>
+                                    <td>{{ $cours->nomClasse }}</td>
                                     <td>
                                         <div class="dropdown">
                                             <button class="btn btn-success dropdown-toggle" type="button"
@@ -141,8 +137,8 @@
                                                 Action
                                             </button>
                                             <div class="dropdown-menu">
-                                                <button class="dropdown-item classe-delete"
-                                                    data-id="{{ $classe->id }}">
+                                                <button class="dropdown-item cours-delete"
+                                                    data-id="{{ $cours->id }}">
                                                     Supprimer
                                                     <div class="btn btn-danger">
                                                         <i class="fas fa-trash"></i>
@@ -153,17 +149,17 @@
                                                         <i class="fas fa-edit"></i>
                                                     </button>
                                                 </a>
-                                                @if ($classe->publie == 0)
-                                                    <button class="dropdown-item classe-publie"
-                                                        data-id="{{ $classe->id }}">
+                                                @if ($cours->publie == 0)
+                                                    <button class="dropdown-item cours-publie"
+                                                        data-id="{{ $cours->id }}">
                                                         Publier
                                                         <div class="btn btn-success">
                                                             <i class="fas fa-check"></i>
                                                         </div>
                                                     </button>
                                                 @else
-                                                    <button class="dropdown-item classe-retirer"
-                                                        data-id="{{ $classe->id }}">
+                                                    <button class="dropdown-item cours-retirer"
+                                                        data-id="{{ $cours->id }}">
                                                         Retirer
                                                         <div class="btn btn-danger">
                                                             <i class="fas fa-check"></i>
