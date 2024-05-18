@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('annee_scollaires', function (Blueprint $table) {
             $table->id();
+            $table->string('annee_scollaire');
             $table->timestamps();
         });
     }

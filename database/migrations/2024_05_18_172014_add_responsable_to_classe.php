@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('carnet_correspondances', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('classes', function (Blueprint $table) {
+            //
+            $table->foreignId('classe_responsable_id')->references('id')->on('responsable_ecoles')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -22,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carnet_correspondances');
+        Schema::table('classes', function (Blueprint $table) {
+            //
+        });
     }
 };

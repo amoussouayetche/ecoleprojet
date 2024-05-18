@@ -10,13 +10,4 @@ use Illuminate\Notifications\Notification;
 class Parents extends Model
 {
     use HasFactory;
-    public function listEnfant(){
-        return $this->hasMany(Eleve::class);
-    }
-    public function listNotif(){
-        return $this->hasMany(Notification::class);
-    }
-    public function listMessage(){
-        return $this->hasMany(Message::class);
-    }
 }

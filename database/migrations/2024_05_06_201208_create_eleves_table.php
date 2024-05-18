@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('eleves', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('users_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('eleve_users_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('eleve_parent_id')->references('id')->on('parents')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('eleve_classe_id')->references('id')->on('classes')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('eleve_annee_id')->references('id')->on('annee_scollaires')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
