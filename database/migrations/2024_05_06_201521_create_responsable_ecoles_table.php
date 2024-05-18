@@ -15,17 +15,10 @@ return new class extends Migration
 
             $table->foreignId('ecole_id')->constrained()->onDelete();
             $table->id();
-            $table->string('nom');
-            $table->string('prenom');
-            $table->string('telephone');
-            $table->date('date_naiss');
+            $table->foreignId('users_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->date('date_embauche');
             $table->string('situation_matimo');
-            $table->string('email');
-            $table->string('sexe');
-            $table->string('adresse');
-
-            $table->string('diplome');$table->softDeletes();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('bulletins', function (Blueprint $table) {
             $table->id();
+            $table->string('annee_scollaire');
+            $table->float('moyenne');
+            $table->string('appreciation');
             $table->timestamps();
         });
     }

@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('courriers', function (Blueprint $table) {
             $table->id();
+            $table->string('message');
+            $table->datetimes('date_envoi');
+            $table->foreignId('expéditeur_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('destinataire_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

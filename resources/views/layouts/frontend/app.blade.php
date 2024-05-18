@@ -3,13 +3,18 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
+        <meta name="author" content="Untree.co">
+        <link rel="shortcut icon" href="favicon.png">
+      
+        <meta name="description" content="" />
+        <meta name="keywords" content="bootstrap, bootstrap4" />
+        <title>Gestion Ecole Primaire</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+        <link href="https://fonts.googleapis.com/css2?family=Display+Playfair:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
 
         <link rel="stylesheet" href="frontend/css/bootstrap.min.css">
         <link rel="stylesheet" href="frontend/css/animate.min.css">
@@ -26,19 +31,6 @@
         </style>
     </head>
     <body>
-        @if (Route::has('login'))
-                <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
-                    @auth
-                        <a href="{{ url('/home') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Home</a>
-                    @else
-                        <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
             <div class="site-mobile-menu">
                 <div class="site-mobile-menu-header">
                   <div class="site-mobile-menu-close">
@@ -59,14 +51,25 @@
                       </div>
             
                       <div class="col-6 col-lg-3 text-right">
-                        <a href="login.html" class="small mr-3">
-                          <span class="icon-lock"></span>
-                          Log In
-                        </a>
-                        <a href="register.html" class="small">
-                          <span class="icon-person"></span>
-                          Register
-                        </a>
+                        @if (Route::has('login'))
+                                @auth
+                                <a href="{{ url('/home') }}" class="small">
+                                    <span class="icon-person"></span>
+                                    Home
+                                  </a>
+                                @else
+                                <a href="{{ route('login') }}" class="small mr-3">
+                                    <span class="icon-lock"></span>
+                                    Log In
+                                  </a>
+                                    @if (Route::has('register'))
+                                    <a href="{{ route('register') }}" class="small">
+                                        <span class="icon-person"></span>
+                                        Register
+                                      </a>
+                                    @endif
+                                @endauth
+                        @endif
                       </div>
             
                     </div>
