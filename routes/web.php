@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\EleveControlleur;
 use App\Http\Controllers\Backend\EnseignatControlleur;
 use App\Http\Controllers\Backend\EvaluationControlleur;
 use App\Http\Controllers\Backend\NoteControlleur;
+use App\Http\Controllers\Backend\PasswordControlleur;
 use App\Http\Controllers\Backend\ResponsableControlleur;
 use App\Models\Notes;
 use Illuminate\Support\Facades\Auth;
@@ -73,7 +74,11 @@ Route::prefix('admin')->group(function () {
         Route::get('/add_note/admin', [NoteControlleur::class, 'index'])->name('add_note_admin');
         Route::post('/store_note/admin', [NoteControlleur::class, 'store'])->name('store_note_admin');
 
-    });
+        // Notes
+        Route::get('/add_password/admin', [PasswordControlleur::class, 'index'])->name('add_password_admin');
+        Route::post('/store_password/admin', [PasswordControlleur::class, 'store'])->name('store_password_admin');
+
+    }); 
 });
 
 
