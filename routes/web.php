@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\CoursControlleur;
 use App\Http\Controllers\Backend\EcoleControlleur;
 use App\Http\Controllers\Backend\EleveControlleur;
 use App\Http\Controllers\Backend\EnseignatControlleur;
+use App\Http\Controllers\Backend\EvaluationControlleur;
 use App\Http\Controllers\Backend\ResponsableControlleur;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -61,6 +62,10 @@ Route::prefix('admin')->group(function () {
         // Enseignant
         Route::get('/add_enseignat/admin', [EnseignatControlleur::class, 'index'])->name('add_enseignat_admin');
         Route::post('/store_enseignat/admin', [EnseignatControlleur::class, 'store'])->name('store_enseignat_admin');
+        
+        // Evaluation
+        Route::get('/add_evaluation/admin', [EvaluationControlleur::class, 'index'])->name('add_evaluation_admin');
+        Route::post('/store_evaluation/admin', [EvaluationControlleur::class, 'store'])->name('store_evaluation_admin');
 
     });
 });
