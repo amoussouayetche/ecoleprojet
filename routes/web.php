@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\ClassesControlleur;
 use App\Http\Controllers\Backend\CoursControlleur;
 use App\Http\Controllers\Backend\EcoleControlleur;
 use App\Http\Controllers\Backend\EleveControlleur;
+use App\Http\Controllers\Backend\EnseignatControlleur;
 use App\Http\Controllers\Backend\ResponsableControlleur;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -44,7 +45,7 @@ Route::prefix('admin')->group(function () {
         // Responsable
         Route::get('/add_responsable/admin', [ResponsableControlleur::class, 'index'])->name('add_responsable_admin');
         Route::post('/store_responsable/admin', [ResponsableControlleur::class, 'store'])->name('store_responsable_admin');
-        
+
         // Classes
         Route::get('/add_classe/admin', [ClassesControlleur::class, 'index'])->name('add_classe_admin');
         Route::post('/store_classe/admin', [ClassesControlleur::class, 'store'])->name('store_classe_admin');
@@ -56,6 +57,10 @@ Route::prefix('admin')->group(function () {
         // Eleve
         Route::get('/add_eleve/admin', [EleveControlleur::class, 'index'])->name('add_eleve_admin');
         Route::post('/store_eleve/admin', [EleveControlleur::class, 'store'])->name('store_eleve_admin');
+
+        // Enseignant
+        Route::get('/add_enseignat/admin', [EnseignatControlleur::class, 'index'])->name('add_enseignat_admin');
+        Route::post('/store_enseignat/admin', [EnseignatControlleur::class, 'store'])->name('store_enseignat_admin');
 
     });
 });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\AnneeScollaire;
 use App\Models\Classe;
+use App\Models\Ecole;
 use App\Models\Eleve;
 use App\Models\Parents;
 use App\Models\User;
@@ -16,16 +17,33 @@ class EleveControlleur extends Controller
 {
     //
     public function index(){
+        $ecoles=Ecole::all();
         $classes=Classe::all();
         $anneescolaire=AnneeScollaire::latest()->limit(1)->get();
-        $eleves=Eleve::join('users','users.id','=','eleves.eleve_users_id')
-        ->join('parents','parents.parent_users_id','=','users.id')
-        ->join('classes','classes.id','=','eleves.eleve_classe_id')
-        ->join('annee_scollaires','annee_scollaires.id','=','eleves.eleve_annee_id')
-        ->get();
+        $eleves= Eleve::join('users as eleve_user', 'eleves.eleve_users_id', '=', 'eleve_user.id')
+    ->join('parents', 'eleves.eleve_parent_id', '=', 'parents.id')
+    ->join('users as parent_user', 'parents.parent_users_id', '=', 'parent_user.id')
+    ->join('classes', 'eleves.eleve_classe_id', '=', 'classes.id')
+    ->join('annee_scollaires', 'eleves.eleve_annee_id', '=', 'annee_scollaires.id')
+    ->join('ecoles', 'eleves.eleve_ecole_id', '=', 'ecoles.id')
+    ->select(
+        'eleves.id as eleve_id',
+        'eleve_user.name as eleve_name',
+        'eleve_user.prenom as eleve_prenom',
+        'eleve_user.telephone as eleve_telephone',
+        'eleve_user.email as eleve_email',
+        'eleve_user.sexe as eleve_sexe',
+        'parent_user.name as parent_name',
+        'parent_user.telephone as parent_telephone',
+        'classes.nomClasse as classe_name',
+        'annee_scollaires.annee_scollaire as annee_year',
+        'ecoles.nom_ecole'
+    )
+    ->get();
         return view("layouts.backend.admin.eleve.add",[
             'eleves'=>$eleves,
             'classes'=>$classes,
+            'ecoles'=>$ecoles,
             'anneescolaire'=>$anneescolaire,
         ]);
     }
@@ -34,7 +52,6 @@ class EleveControlleur extends Controller
             'nom' => ['required'],
             'prenom' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'emailparent' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         ];
      
         $messages = [
@@ -53,7 +70,7 @@ class EleveControlleur extends Controller
      
         $usereleve = new User();
         $usereleve->name=$data['nom'];
-        $usereleve->role_id=3;
+        $usereleve->role_id=4;
         $usereleve->prenom=$data['prenom'];
         $usereleve->telephone=$data['tel'];
         $usereleve->sexe=$data['sexe'];
@@ -64,14 +81,14 @@ class EleveControlleur extends Controller
         $usereleve_save = $usereleve->save();
 
         $userparent = new User();
-        $userparent->name=$data['nom'];
-        $userparent->role_id=4;
-        $userparent->prenom=$data['prenom'];
-        $userparent->telephone=$data['tel'];
-        $userparent->sexe=$data['sexe'];
-        $userparent->adresse=$data['adresse'];
-        $userparent->email=$data['email'];
-        $userparent->date_naiss=$data['date'];
+        $userparent->name=$data['nomparent'];
+        $userparent->role_id=5;
+        $userparent->prenom=$data['prenomparent'];
+        $userparent->telephone=$data['telparent'];
+        $userparent->sexe=$data['sexeparent'];
+        $userparent->adresse=$data['adresseparent'];
+        $userparent->email=$data['emailparent'];
+        $userparent->date_naiss=$data['dateparent'];
 
         $userparent_save = $userparent->save();
 
@@ -82,9 +99,10 @@ class EleveControlleur extends Controller
 
         $eleve=new Eleve();
         $eleve->eleve_users_id=$usereleve->id;
-        $eleve->eleve_parent_id=$userparent->id;
+        $eleve->eleve_parent_id=$parent->id;
         $eleve->eleve_classe_id=$data['classe'];
         $eleve->eleve_annee_id=$data['annee'];
+        $eleve->eleve_ecole_id=$data['ecole'];
 
         $eleve_save = $eleve->save();
      
