@@ -8,7 +8,9 @@ use App\Http\Controllers\Backend\EcoleControlleur;
 use App\Http\Controllers\Backend\EleveControlleur;
 use App\Http\Controllers\Backend\EnseignatControlleur;
 use App\Http\Controllers\Backend\EvaluationControlleur;
+use App\Http\Controllers\Backend\NoteControlleur;
 use App\Http\Controllers\Backend\ResponsableControlleur;
+use App\Models\Notes;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -66,6 +68,10 @@ Route::prefix('admin')->group(function () {
         // Evaluation
         Route::get('/add_evaluation/admin', [EvaluationControlleur::class, 'index'])->name('add_evaluation_admin');
         Route::post('/store_evaluation/admin', [EvaluationControlleur::class, 'store'])->name('store_evaluation_admin');
+        
+        // Notes
+        Route::get('/add_note/admin', [NoteControlleur::class, 'index'])->name('add_note_admin');
+        Route::post('/store_note/admin', [NoteControlleur::class, 'store'])->name('store_note_admin');
 
     });
 });

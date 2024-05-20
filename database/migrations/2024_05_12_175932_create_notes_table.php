@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('cours_id')->references('id')->on('cours')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('notes_evaluation_id')->references('id')->on('evaluations')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('notes_eleves_id')->references('id')->on('eleves')->onDelete('cascade')->onUpdate('cascade');
             $table->float('note');
-            $table->softDeletes();
             $table->timestamps();
         });
     }
