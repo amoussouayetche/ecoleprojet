@@ -174,6 +174,7 @@
 </ul>
 <!-- End of Sidebar -->
 @elseif(Auth::check() && Auth::user()->role_id == 2)
+
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -202,6 +203,20 @@
     <div class="sidebar-heading">
         Directeur
     </div>
+    <!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseC"
+        aria-expanded="true" aria-controls="collapseC">
+        <i class="fas fa-fw fa-cog"></i>
+        <span>Responsable Classes</span>
+    </a>
+    <div id="collapseC" class="collapse" aria-labelledby="headinga" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header"></h6>
+            <a class="collapse-item" href="{{route('add_responsable_admin')}}">Ajouter / Liste</a>
+        </div>
+    </div>
+</li>
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseD"
@@ -258,21 +273,7 @@
         </div>
     </div>
 </li>
- <!-- Nav Item - Pages Collapse Menu -->
 
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseB"
-        aria-expanded="true" aria-controls="collapseB">
-        <i class="fas fa-fw fa-cog"></i>
-        <span>Annee Scollaire</span>
-    </a>
-    <div id="collapseB" class="collapse" aria-labelledby="headinga" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header"></h6>
-            <a class="collapse-item" href="{{route('add_annee_admin')}}">Ajouter / Liste</a>
-        </div>
-    </div>
-</li>
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 

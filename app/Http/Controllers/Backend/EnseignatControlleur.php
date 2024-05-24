@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Cours;
 use App\Models\Ecole;
 use App\Models\Enseignant;
-use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -15,11 +16,17 @@ class EnseignatControlleur extends Controller
 {
     //
     public function index(){
-        $ecoles=Ecole::all();
-        $cours=Cours::all();
+        $ecoles=Ecole::where("directeur_id",Auth::user()->id)->get();
+        $cours=Cours::join('classes','classes.id','=','cours.cours_classe_id')
+        ->join('responsable_ecoles', 'responsable_ecoles.id', '=', 'classes.classe_responsable_id')
+        ->join('ecoles as tablecole', 'tablecole.id', '=', 'responsable_ecoles.responsable_ecole_id')
+        ->where("tablecole.directeur_id", Auth::user()->id)
+        ->select('cours.id as coursid','cours.nom_cours')
+        ->get();
         $enseignants=Enseignant::join('users','users.id','=','enseignants.enseignant_users_id')
-        ->join('ecoles','ecoles.id','=','enseignants.enseignant_ecole_id')
+        ->join('ecoles as tablecole','tablecole.id','=','enseignants.enseignant_ecole_id')
         ->join('cours','cours.id','=','enseignants.enseignant_cours_id')
+        ->where("tablecole.directeur_id", Auth::user()->id)
         ->get();
         return view("layouts.backend.admin.enseignant.add",[
             'enseignants'=>$enseignants,

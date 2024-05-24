@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
-use App\Models\AnneeScollaire;
-use App\Models\Classe;
+use App\Models\User;
 use App\Models\Ecole;
 use App\Models\Eleve;
+use App\Models\Classe;
 use App\Models\Parents;
-use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\AnneeScollaire;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,15 +18,20 @@ class EleveControlleur extends Controller
 {
     //
     public function index(){
-        $ecoles=Ecole::all();
-        $classes=Classe::all();
+        $ecoles=Ecole::where("directeur_id",Auth::user()->id)->get();
+        $classes=Classe::join('responsable_ecoles', 'responsable_ecoles.id', '=', 'classes.classe_responsable_id')
+        ->join('ecoles as tablecole', 'tablecole.id', '=', 'responsable_ecoles.responsable_ecole_id')
+        ->where("tablecole.directeur_id", Auth::user()->id)
+        ->select('classes.id as classeid', 'classes.nomClasse')
+        ->get();;
         $anneescolaire=AnneeScollaire::latest()->limit(1)->get();
         $eleves= Eleve::join('users as eleve_user', 'eleves.eleve_users_id', '=', 'eleve_user.id')
     ->join('parents', 'eleves.eleve_parent_id', '=', 'parents.id')
     ->join('users as parent_user', 'parents.parent_users_id', '=', 'parent_user.id')
     ->join('classes', 'eleves.eleve_classe_id', '=', 'classes.id')
     ->join('annee_scollaires', 'eleves.eleve_annee_id', '=', 'annee_scollaires.id')
-    ->join('ecoles', 'eleves.eleve_ecole_id', '=', 'ecoles.id')
+    ->join('ecoles as tablecole', 'eleves.eleve_ecole_id', '=', 'tablecole.id')
+    ->where("tablecole.directeur_id", Auth::user()->id)
     ->select(
         'eleves.id as eleve_id',
         'eleve_user.name as eleve_name',
@@ -37,7 +43,7 @@ class EleveControlleur extends Controller
         'parent_user.telephone as parent_telephone',
         'classes.nomClasse as classe_name',
         'annee_scollaires.annee_scollaire as annee_year',
-        'ecoles.nom_ecole'
+        'tablecole.nom_ecole'
     )
     ->get();
         return view("layouts.backend.admin.eleve.add",[

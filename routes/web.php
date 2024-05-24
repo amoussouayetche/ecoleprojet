@@ -28,9 +28,11 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', function () {
-    return view('layouts.frontend.app');
-});
-
+    return view('layouts.frontend.home');
+})->name('acceuil');
+Route::get('/contact', function () {
+    return view('layouts.frontend.pages.contact.index');
+})->name('contact');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

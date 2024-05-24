@@ -1,0 +1,10 @@
+<script src="{{asset('frontend/js/jquery-3.4.1.min.js')}}"></script>
+                <script src="{{asset('frontend/js/popper.min.js')}}"></script>
+                <script src="{{asset('frontend/js/bootstrap.min.js')}}"></script>
+                <script src="{{asset('frontend/js/owl.carousel.min.js')}}"></script>
+                <script src="{{asset('frontend/js/jquery.animateNumber.min.js')}}"></script>
+                <script src="{{asset('frontend/js/jquery.waypoints.min.js')}}"></script>
+                <script src="{{asset('frontend/js/jquery.fancybox.min.js')}}"></script>
+                <script src="{{asset('frontend/js/jquery.sticky.js')}}"></script>
+                <script src="{{asset('frontend/js/aos.js')}}"></script>
+                <script src="{{asset('frontend/js/custom.js')}}"></script>

@@ -132,7 +132,7 @@
                     <select  class="form-control" id="validationCustom02" name="cours" id="cours" required>
                         <option value="" selected disabled>Selectionné</option>
                         @foreach ($cours as $cours)                        
-                        <option value="{{$cours->id}}">{{$cours->nom_cours}}</option>
+                        <option value="{{$cours->coursid}}">{{$cours->nom_cours}}</option>
                         @endforeach
                     </select>
                     <div class="valid-feedback">

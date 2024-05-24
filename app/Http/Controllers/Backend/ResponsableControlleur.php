@@ -7,6 +7,7 @@ use App\Models\Ecole;
 use App\Models\ResponsableEcole;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
@@ -14,9 +15,11 @@ class ResponsableControlleur extends Controller
 {
     //
     public function index(){
-        $ecoles=Ecole::all();
+        $user=User::where("id",Auth::user()->id)->first();
+        $ecoles=Ecole::where("directeur_id",Auth::user()->id)->get();
         $responsableecoles=ResponsableEcole::join('users','users.id','=','responsable_ecoles.responsable_users_id')
-        ->join('ecoles','ecoles.id','=','responsable_ecoles.responsable_ecole_id')
+        ->join('ecoles as tablecole','tablecole.id','=','responsable_ecoles.responsable_ecole_id')
+        ->where("tablecole.directeur_id",Auth::user()->id)
         ->get();
         return view("layouts.backend.admin.responsable.add",[
             'responsableecoles'=>$responsableecoles,

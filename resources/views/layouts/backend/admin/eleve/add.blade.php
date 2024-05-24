@@ -106,7 +106,7 @@
                     <select  class="form-control" id="validationCustom02" name="classe" id="classe" required>
                         <option value="" selected disabled>Selectionné</option>
                         @foreach ($classes as $classe)                        
-                        <option value="{{$classe->id}}">{{$classe->nomClasse}}</option>
+                        <option value="{{$classe->classeid}}">{{$classe->nomClasse}}</option>
                         @endforeach
                     </select>
                     <div class="valid-feedback">

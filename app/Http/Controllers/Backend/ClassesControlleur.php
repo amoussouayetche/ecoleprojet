@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Classe;
 use App\Models\ResponsableEcole;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
@@ -14,10 +15,14 @@ class ClassesControlleur extends Controller
     //
     public function index(){
         $responsables=ResponsableEcole::join('users','users.id','=','responsable_ecoles.responsable_users_id')
+        ->join('ecoles as tablecole','tablecole.id','=','responsable_ecoles.responsable_ecole_id')
         ->select('users.name as username','responsable_ecoles.id as responsableid')
+        ->where("tablecole.directeur_id",Auth::user()->id)
         ->get();
         $classes=Classe::join('responsable_ecoles','responsable_ecoles.id','=','classes.classe_responsable_id')
         ->join('users','users.id','=','responsable_ecoles.responsable_users_id')
+        ->join('ecoles as tablecole','tablecole.id','=','responsable_ecoles.responsable_ecole_id')
+        ->where("tablecole.directeur_id",Auth::user()->id)
         ->select('classes.id as classeid','classes.nomClasse','users.name','users.telephone')
         ->get();
         return view("layouts.backend.admin.classe.add",[
