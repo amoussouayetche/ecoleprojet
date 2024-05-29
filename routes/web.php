@@ -89,14 +89,17 @@ Route::prefix('admin')->group(function () {
         Route::post('/store_message_parent/admin', [MessageController::class, 'storeResponsableMessage'])->name('store_message_parent_admin');
         
         //Show Message
-        Route::get('/show_message_parent/admin/{id}', [MessageController::class, 'show'])->name('show_message');
+        Route::get('/show_message_parent/{id}', [MessageController::class, 'show'])->name('show_message');
 
         // Message Parent
-        Route::get('/send_message_responsable/admin', [MessageController::class, 'indexParentMessage'])->name('message_send_responsable');
-        Route::post('/store_message_responsable/admin', [MessageController::class, 'storeParentMessage'])->name('store_message_responsable_admin');
+        Route::get('/send_message_responsable', [MessageController::class, 'indexParentMessage'])->name('message_send_responsable');
+        Route::post('/store_message_responsable', [MessageController::class, 'storeParentMessage'])->name('store_message_responsable_admin');
         
         // Bulletin Eleve
-        Route::get('/show_bulletin_eleve/admin', [BulletinController::class, 'index'])->name('show_bulletin_eleve');
+        Route::get('/show_bulletin_eleve', [BulletinController::class, 'index'])->name('show_bulletin_eleve');
+        
+        // Bulletin parent
+        Route::get('/show_bulletin_parent', [BulletinController::class, 'indexParent'])->name('show_bulletin_parent');
         
     }); 
 });
