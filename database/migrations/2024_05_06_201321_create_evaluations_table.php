@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('evaluations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('evaluation_cours_id')->references('id')->on('cours')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('evaluation_classe_id')->references('id')->on('classes')->onDelete('cascade')->onUpdate('cascade');
             $table->date('date_evaluation');
             $table->timestamps();
         });

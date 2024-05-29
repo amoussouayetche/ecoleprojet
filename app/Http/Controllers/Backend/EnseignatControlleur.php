@@ -27,6 +27,7 @@ class EnseignatControlleur extends Controller
         ->join('ecoles as tablecole','tablecole.id','=','enseignants.enseignant_ecole_id')
         ->join('cours','cours.id','=','enseignants.enseignant_cours_id')
         ->where("tablecole.directeur_id", Auth::user()->id)
+        ->select('enseignants.id as enseignantid','users.name','users.prenom','users.telephone','cours.nom_cours','tablecole.nom_ecole','enseignants.date_embauche')
         ->get();
         return view("layouts.backend.admin.enseignant.add",[
             'enseignants'=>$enseignants,
@@ -54,7 +55,7 @@ class EnseignatControlleur extends Controller
         }
      
         $data = $request->all();
-     
+        
         $user = new User();
         $user->name=$data['nom'];
         $user->role_id=6;

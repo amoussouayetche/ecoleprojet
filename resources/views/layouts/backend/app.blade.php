@@ -11,6 +11,7 @@
     <title>{{'Gestion Ecole Admin'}}</title>
 
     @include('layouts.backend.include.style')
+    @yield('css')
 
 </head>
 
@@ -80,6 +81,7 @@
     </div>
 
     @include('layouts.backend.include.script')
+    @yield('js')
 </body>
 
 </html>

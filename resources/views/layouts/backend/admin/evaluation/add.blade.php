@@ -51,23 +51,11 @@
             </div>
             <div class="row mb-2">
                 <div class="col-xl-6">
-                    <label for="validationCustom01" class="form-label">Classe</label>
-                    <select  class="form-control" id="validationCustom02" name="classe" id="classe" required>
-                        <option value="" selected disabled>Selectionné</option>
-                        @foreach ($classes as $classes)                        
-                        <option value="{{$classes->id}}">{{$classes->nomClasse}}</option>
-                        @endforeach
-                    </select>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                </div>
-                <div class="col-xl-6">
                     <label for="validationCustom01" class="form-label">Cours</label>
                     <select  class="form-control" id="validationCustom02" name="cours" id="cours" required>
                         <option value="" selected disabled>Selectionné</option>
                         @foreach ($cours as $cours)                        
-                        <option value="{{$cours->id}}">{{$cours->nom_cours}}</option>
+                        <option value="{{$cours->coursid}}">{{$cours->nom_cours}}</option>
                         @endforeach
                     </select>
                     <div class="valid-feedback">

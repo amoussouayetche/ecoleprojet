@@ -307,6 +307,36 @@
     <div class="sidebar-heading">
         Responsable classe
     </div>
+
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseH"
+        aria-expanded="true" aria-controls="collapseH">
+        <i class="fas fa-fw fa-cog"></i>
+        <span>Note</span>
+    </a>
+    <div id="collapseH" class="collapse" aria-labelledby="headinga" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header"></h6>
+            <a class="collapse-item" href="{{route('add_note_admin')}}">Ajouter / Liste</a>
+        </div>
+    </div>
+</li>
+<!-- Nav Item - Pages Collapse Menu -->
+  <!-- Divider --> <!-- Nav Item - Pages Collapse Menu -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMe"
+        aria-expanded="true" aria-controls="collapseMe">
+        <i class="fas fa-fw fa-cog"></i>
+        <span>Message</span>
+    </a>
+    <div id="collapseMe" class="collapse" aria-labelledby="headinga" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header"></h6>
+            <a class="collapse-item" href="{{route('message_send_parent')}}">Envoyer / Liste</a>
+        </div>
+    </div>
+</li>
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
@@ -339,6 +369,34 @@
     <div class="sidebar-heading">
         Eleve
     </div>
+    <!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseH"
+        aria-expanded="true" aria-controls="collapseH">
+        <i class="fas fa-fw fa-cog"></i>
+        <span>Note</span>
+    </a>
+    <div id="collapseH" class="collapse" aria-labelledby="headinga" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header"></h6>
+            <a class="collapse-item" href="{{route('show_note_eleve')}}">Ajouter / Liste</a>
+        </div>
+    </div>
+</li>
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBul"
+        aria-expanded="true" aria-controls="collapseBul">
+        <i class="fas fa-fw fa-cog"></i>
+        <span>Bulletin</span>
+    </a>
+    <div id="collapseBul" class="collapse" aria-labelledby="headinga" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header"></h6>
+            <a class="collapse-item" href="{{route('show_bulletin_eleve')}}">Voir</a>
+        </div>
+    </div>
+</li>
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
@@ -371,6 +429,35 @@
     <div class="sidebar-heading">
         Parent
     </div>
+        <!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseH"
+        aria-expanded="true" aria-controls="collapseH">
+        <i class="fas fa-fw fa-cog"></i>
+        <span>Note</span>
+    </a>
+    <div id="collapseH" class="collapse" aria-labelledby="headinga" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header"></h6>
+            <a class="collapse-item" href="{{route('showparent_note_eleve')}}">Ajouter / Liste</a>
+        </div>
+    </div>
+</li>
+  <!-- Divider --> <!-- Nav Item - Pages Collapse Menu -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMe"
+        aria-expanded="true" aria-controls="collapseMe">
+        <i class="fas fa-fw fa-cog"></i>
+        <span>Message</span>
+    </a>
+    <div id="collapseMe" class="collapse" aria-labelledby="headinga" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header"></h6>
+            <a class="collapse-item" href="{{route('message_send_responsable')}}">Envoyer / Liste</a>
+        </div>
+    </div>
+</li>
+    <!-- Divider -->
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 

@@ -43,7 +43,7 @@
                 <div class="col-xl-6">
                     <label for="validationCustom01" class="form-label">Nom de l'enseignant</label>
                     <input type="text" class="form-control" id="validationCustom02" name="nom"
-                        placeholder="Nom de l'enseignant" required>
+                        placeholder="Nom de l'enseignant" >
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -51,7 +51,7 @@
                 <div class="col-xl-6">
                     <label for="validationCustom01" class="form-label">Prenom de l'enseignant</label>
                     <input type="text" class="form-control" id="validationCustom02" name="prenom"
-                        placeholder="Prenom de l'enseignant" required>
+                        placeholder="Prenom de l'enseignant" >
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -61,14 +61,14 @@
                 <div class="col-xl-6">
                     <label for="validationCustom01" class="form-label">Telephone de l'enseignant</label>
                     <input type="text" class="form-control" id="validationCustom02" name="tel"
-                        placeholder="Telephone de l'enseignant" required>
+                        placeholder="Telephone de l'enseignant" >
                     <div class="valid-feedback">
                         Looks good!
                     </div>
                 </div>
                 <div class="col-xl-6">
                     <label for="validationCustom01" class="form-label">Sexe de l'enseignant</label>
-                    <select  class="form-control" id="validationCustom02" name="sexe" id="sexe" required>
+                    <select  class="form-control" id="validationCustom02" name="sexe" id="sexe" >
                         <option value="" selected disabled>Selectionné</option>
                         <option value="M">Masculin</option>
                         <option value="F">Feminin</option>
@@ -82,7 +82,7 @@
                 <div class="col-xl-6">
                     <label for="validationCustom01" class="form-label">Adresse de l'enseignant</label>
                     <input type="text" class="form-control" id="validationCustom02" name="adresse"
-                        placeholder="Adresse de l'enseignant" required>
+                        placeholder="Adresse de l'enseignant" >
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -90,7 +90,7 @@
                 <div class="col-xl-6">
                     <label for="validationCustom01" class="form-label">Email de l'enseignant</label>
                     <input type="text" class="form-control" id="validationCustom02" name="email"
-                        placeholder="Email de l'enseignant" required>
+                        placeholder="Email de l'enseignant" >
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -100,7 +100,7 @@
                 <div class="col-xl-6">
                     <label for="validationCustom01" class="form-label">Date Naissance de l'enseignant</label>
                     <input type="date" class="form-control" id="validationCustom02" name="date"
-                        placeholder="Date Naissance de l'enseignant" required>
+                        placeholder="Date Naissance de l'enseignant" >
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -108,7 +108,7 @@
                 <div class="col-xl-6">
                     <label for="validationCustom01" class="form-label">Date Embauche</label>
                     <input type="date" class="form-control" id="validationCustom02" name="dateembauche"
-                        placeholder="" required>
+                        placeholder="" >
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -117,7 +117,7 @@
             <div class="row mb-2">
                 <div class="col-xl-6">
                     <label for="validationCustom01" class="form-label">Ecole</label>
-                    <select  class="form-control" id="validationCustom02" name="ecole" id="ecole" required>
+                    <select  class="form-control" id="validationCustom02" name="ecole" id="ecole" >
                         <option value="" selected disabled>Selectionné</option>
                         @foreach ($ecoles as $ecole)                        
                         <option value="{{$ecole->id}}">{{$ecole->nom_ecole}}</option>
@@ -129,7 +129,7 @@
                 </div>
                 <div class="col-xl-6">
                     <label for="validationCustom01" class="form-label">Cours</label>
-                    <select  class="form-control" id="validationCustom02" name="cours" id="cours" required>
+                    <select  class="form-control" id="validationCustom02" name="cours" id="cours" >
                         <option value="" selected disabled>Selectionné</option>
                         @foreach ($cours as $cours)                        
                         <option value="{{$cours->coursid}}">{{$cours->nom_cours}}</option>
@@ -210,7 +210,7 @@
                         <tbody>
                             @foreach ($enseignants as $enseignant)
                                 <tr>
-                                    <th scope="row">{{ $enseignant->id }}</th>
+                                    <th scope="row">{{ $enseignant->enseignantid }}</th>
                                     <td>{{ $enseignant->name }} {{ $enseignant->prenom }}</td>
                                     <td>{{ $enseignant->telephone }}</td>
                                     <td>{{ $enseignant->date_embauche }}</td>
