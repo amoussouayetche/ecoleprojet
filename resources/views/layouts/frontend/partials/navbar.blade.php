@@ -23,8 +23,8 @@
                 <li><a href="staff.html">Our Staff</a></li>
                 <li><a href="news.html">News</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="about.html">About</a></li> --}}
-                <li><a href="contact.html">Actualité</a></li>
+                <li><a href="about.html">About</a></li> 
+                <li><a href="contact.html">Actualité</a></li>--}}
             </ul>
 
             <a href="{{route('contact')}}" class="btn-book btn btn-secondary btn-sm menu-absolute">Contact</a>
